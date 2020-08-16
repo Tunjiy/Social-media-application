@@ -4,7 +4,12 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-
+	<style type="text/css">
+		*{
+			font-size:12px;
+			font-family:arial,Helvetica,Sans-serif;
+		}
+	</style>
 	<?php  
 	require 'config/config.php';
 	include("includes/classes/user.php");
@@ -21,7 +26,8 @@
 
 	?>
 	<script>
-		function toggle() {
+		function toggle() 
+		{
 			var element = document.getElementById("comment_section");
 
 			if(element.style.display == "block") 
@@ -46,8 +52,15 @@
 		$post_body = $_POST['post_body'];
 		$post_body = mysqli_escape_string($conn, $post_body);
 		$date_time_now = date("Y-m-d H:i:s");
-		$insert_post = mysqli_query($conn, "INSERT INTO comments VALUES ('', '$post_body', '$userLoggedIn', '$posted_to', '$date_time_now', 'no', '$post_id'");
+		$insert_post = mysqli_query($conn, "INSERT INTO comments VALUES ('', '$post_body', '$userLoggedIn', '$posted_to', '$date_time_now', 'no', '$post_id')");
+		if($insert_post)
+		{
+			echo "line 49 is now working";
+		}
+		
 		echo "<p>Comment Posted! </p>";
+		
+		
 	}
 	?>
 	<form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
@@ -63,13 +76,12 @@
 		{
 			while($comment=mysqli_fetch_array($get_comments))
 			{
-				$comment_body=$comment['comment_body'];
+				$comment_body=$comment['post_body'];
 				$posted_to=$comment['posted_to'];
 				$posted_by=$comment['posted_by'];
 				$date_added=$comment['date_added'];
 				$removed=$comment['removed'];
 
-				
 					//Timeframe
 					$date_time_now = date("Y-m-d H:i:s");
 					$start_date = new DateTime($date_added); //Time of post
@@ -134,16 +146,24 @@
 						}
 					}
 					$user_obj = new User($conn, $posted_by);
+?>
+			<!--html code to handle display the comment section-->
+			<div class ="comment_section">
+				<a href="<?php echo $posted_by;?>" target="_parent"><img src="<?php echo $user_obj->getProfilePic();?>" title="<?php echo $posted_by;?>" style="float:left;" height="30" ></a>
+				<a href="<?php echo $posted_by;?>" target="_parent"><b><?php echo $user_obj->getFirstandLastname();?></b> </a>
+				&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo $time_message. '<br>' .$comment_body?>
+				<hr>
+			</div>
+<?php
 		
 			}
 		}
+		else echo "<center><br><br> No comment to show!</center>";
 
-	?>
 
-		<div class ="comment_section">
-			<a href="<?php echo $posted_by;?>" target="_parent">Tunjiy</a>
-			<!--error msg: undefine variable posted by-->
-		</div>
+?>
+
+		
 
 
 
