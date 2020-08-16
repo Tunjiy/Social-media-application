@@ -32,16 +32,15 @@ nav{
     float:right;
     right:1px;
     position:absolute;
-    margin:10px;
+    margin:10px 140px 10px 10px;
 }
 nav a{
     position:relative;
     color:#ffff;
-    font-size:17px;
-    text-decoration:none;
-    margin-right:40px; 
-   
+    font-size:15px;
+    text-decoration:none; 
 }
+
 nav a:hover{
     border-bottom: 1px solid #e67e22
 }
@@ -130,3 +129,72 @@ outline:0;
     padding: 5px 4px 4px 5px;
     color:#ffff
 }
+.status_post
+{
+    width:96%;
+    font-size:15px ;
+    padding:0px 5px ;
+    min-height:75px;
+    cursor:pointer;
+}
+.post_profile_pic
+{
+    float:left;
+    margin-right: 7px;
+}
+.post_profile_pic img
+{
+    border-radius: 20px;
+
+}
+#comment_iframe
+{
+    width: 100%;
+    height: 30%;
+    margin-top:10px;
+}
+.comment_section
+{
+    padding:0px 5px 5px 5px;
+}
+.comment_section img
+{
+    margin:0px 3px 3px 3px;
+    border-radius:3px;
+}
+#comment_form textarea
+{   border-color:#d3d3d3; 
+    width:85%;
+    height:35px;
+    border-radius:5px;
+    color:#616060;
+    font-size:15px;
+    margin:3px 3px 3px 5px;
+}
+a{
+    color:#20AAE5;
+    text-decoration:none;
+}
+#comment_form input[type="submit"]
+{
+    border:none;
+    background-color:#20AAE5;
+    border-radius:5px;
+    color:#156588;
+    width:13%;
+    height:35px;
+    margin-top:3px;
+    position:absolute;
+    font-family:fantasy;
+    color:#1e75ca;
+    text-shadow:#73b6e2 0.5px 0.5px 0.5px; 
+}
+.newsfeedPostOption
+{
+    padding:;
+    text-decoration: ;
+    border:;
+    color:#68aee5;
+}
+
+
